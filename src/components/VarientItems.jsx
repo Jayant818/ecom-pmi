@@ -1,4 +1,3 @@
-import React from "react";
 import VarientItem from "./VarientItem";
 import { SortableContainer } from "react-sortable-hoc";
 
@@ -10,7 +9,6 @@ const VarientItems = SortableContainer(
 		onRemove,
 		handleDiscountChange,
 		handleDiscountTypeChange,
-		onSortEnd,
 		val,
 	}) => {
 		return (

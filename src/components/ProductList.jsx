@@ -12,7 +12,7 @@ const ProductList = () => {
 		},
 	]);
 
-	const handleAddProduct = (newProducts: any[]) => {
+	const handleAddProduct = (newProducts) => {
 		if (!Array.isArray(newProducts)) {
 			console.error("New products is not an array");
 			return;
@@ -26,7 +26,6 @@ const ProductList = () => {
 					(product) => product.id === newProduct.id
 				);
 				if (existingIndex !== -1) {
-					// Replace the first product with the existing one with the same ID
 					const updatedProducts = [...products];
 					updatedProducts[existingIndex] = newProduct;
 					setProducts(updatedProducts);
@@ -45,9 +44,10 @@ const ProductList = () => {
 				if (id < data.id) setId(data.id);
 			}
 		});
+		console.log("Products", products);
 	};
 
-	const handleRemoveProduct = (index: number, variantIndex?: number) => {
+	const handleRemoveProduct = (index, variantIndex) => {
 		console.log("index", index, "variantIndex", variantIndex);
 		setProducts((prevProducts) => {
 			const newProducts = [...prevProducts];
@@ -67,7 +67,7 @@ const ProductList = () => {
 		});
 	};
 
-	const handleDiscountChange = (newValue, productId, variantIndex = null) => {
+	const handleDiscountChange = (newValue, productId, variantIndex) => {
 		setProducts((prevProducts) =>
 			prevProducts.map((product) => {
 				if (product.id === productId) {
@@ -82,11 +82,7 @@ const ProductList = () => {
 		);
 	};
 
-	const handleDiscountTypeChange = (
-		newValue,
-		productId,
-		variantIndex = null
-	) => {
+	const handleDiscountTypeChange = (newValue, productId, variantIndex) => {
 		setProducts((prevProducts) =>
 			prevProducts.map((product) => {
 				if (product.id === productId) {
@@ -107,25 +103,18 @@ const ProductList = () => {
 	};
 
 	const onSortEndForVariants = ({ oldIndex, newIndex }) => {
-		console.log("oldIndex", oldIndex);
-		console.log("newIndex", newIndex);
 		const productId = parseInt(oldIndex.toString().charAt(0));
-		oldIndex = parseInt(oldIndex.toString().slice(1));
-		newIndex = parseInt(newIndex.toString().slice(1));
-		console.log("productId", productId);
-		console.log("oldIndex", oldIndex);
-		console.log("newIndex", newIndex);
+		const oldVarIndex = parseInt(oldIndex.toString().slice(1));
+		const newVarIndex = parseInt(newIndex.toString().slice(1));
 
 		setProducts((prevProducts) =>
 			prevProducts.map((product) => {
 				if (product.id === productId) {
-					// Create a new array with the reordered variants
 					const newVariants = arrayMoveImmutable(
 						product.variants,
-						oldIndex,
-						newIndex
+						oldVarIndex,
+						newVarIndex
 					);
-					// Return a new product object with the updated variants array
 					return { ...product, variants: newVariants };
 				}
 				return product;
@@ -141,10 +130,10 @@ const ProductList = () => {
 		<div className="w-full min-h-[80vh] flex flex-col justify-center items-center ">
 			<div className="w-60% flex flex-col justify-center items-center h-full ">
 				<h2 className="text-xl font-bold mb-4 self-start">Product</h2>
-				<div className=" space-y-4 items-center ">
+				<div className="space-y-4 items-center ">
 					<div className="flex justify-between pl-20">
-						<div className="   ">Product</div>
-						<div className=" ">Discount</div>
+						<div>Product</div>
+						<div>Discount</div>
 					</div>
 
 					<ProductItems
@@ -162,7 +151,7 @@ const ProductList = () => {
 					<div className="flex justify-end pr-20">
 						<button
 							onClick={handleClick}
-							className="   border-2 border-[#008060] bg-white text-[#008060] px-4 py-2 rounded "
+							className="border-2 border-[#008060] bg-white text-[#008060] px-4 py-2 rounded "
 						>
 							Add Product
 						</button>

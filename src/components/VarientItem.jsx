@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { SortableElement, SortableHandle } from "react-sortable-hoc";
 
 const DragHandle = SortableHandle(() => (
@@ -10,12 +9,12 @@ const DragHandle = SortableHandle(() => (
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<circle cx="1" cy="7" r="1" fill="black" fill-opacity="0.5" />
-		<circle cx="6" cy="7" r="1" fill="black" fill-opacity="0.5" />
-		<circle cx="1" cy="1" r="1" fill="black" fill-opacity="0.5" />
-		<circle cx="6" cy="1" r="1" fill="black" fill-opacity="0.5" />
-		<circle cx="1" cy="13" r="1" fill="black" fill-opacity="0.5" />
-		<circle cx="6" cy="13" r="1" fill="black" fill-opacity="0.5" />
+		<circle cx="1" cy="7" r="1" fill="black" fillOpacity="0.5" />
+		<circle cx="6" cy="7" r="1" fill="black" fillOpacity="0.5" />
+		<circle cx="1" cy="1" r="1" fill="black" fillOpacity="0.5" />
+		<circle cx="6" cy="1" r="1" fill="black" fillOpacity="0.5" />
+		<circle cx="1" cy="13" r="1" fill="black" fillOpacity="0.5" />
+		<circle cx="6" cy="13" r="1" fill="black" fillOpacity="0.5" />
 	</svg>
 ));
 
@@ -35,12 +34,12 @@ const VarientItem = SortableElement(
 
 		const handleVariantDiscountChange = (value, ind) => {
 			setDiscount(value);
-			handleDiscountChange(value, ind);
+			handleDiscountChange(value, variant.id, ind);
 		};
 
 		const handleVariantDiscountTypeChange = (value, ind) => {
 			setDiscountType(value);
-			handleDiscountTypeChange(value, ind);
+			handleDiscountTypeChange(value, variant.id, ind);
 		};
 
 		const handleRemove = () => {

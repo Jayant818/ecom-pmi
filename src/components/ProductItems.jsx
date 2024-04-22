@@ -6,7 +6,6 @@ const ProductItems = SortableContainer(
 		products,
 		onRemove,
 		onAddProduct,
-		onSortEnd,
 		onDiscountChange,
 		onDiscountTypeChange,
 		onSortEndForVariants,
