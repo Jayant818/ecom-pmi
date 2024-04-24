@@ -4,8 +4,6 @@ import { SortableContainer } from "react-sortable-hoc";
 const VarientItems = SortableContainer(
 	({
 		product,
-		showDiscount,
-		handleClick,
 		onRemove,
 		handleDiscountChange,
 		handleDiscountTypeChange,
@@ -18,8 +16,6 @@ const VarientItems = SortableContainer(
 						<VarientItem
 							key={index}
 							variant={variant}
-							showDiscount={showDiscount}
-							handleClick={handleClick}
 							onRemove={onRemove}
 							index={parseInt(`${product.id}${index}`, 10)}
 							ind={index}
